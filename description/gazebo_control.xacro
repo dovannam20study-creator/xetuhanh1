@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <gazebo>
+        <plugin name="diff_drive" filename="libgazebo_ros_diff_drive.so">
+
+            <!-- Thông tin bánh xe -->
+            <left_joint>Banh_trai_joint</left_joint>
+            <right_joint>Banh_phai_joint</right_joint>
+
+            <!-- KHoảng cách 2 bánh xe -->
+            <wheel_separation>${rong}</wheel_separation> 
+            <!-- Duong kinh banh xe -->
+            <wheel_diameter>${BanKinBanhxe * 2}</wheel_diameter>
+
+
+            <!-- Limits  Giới hạn gia tốc và momen xoắn-->
+            <max_wheel_torque>200</max_wheel_torque>
+            <max_wheel_acceleration>10.0</max_wheel_acceleration>
+
+            
+            <!-- Output -->
+            <odometry_frame>odom</odometry_frame>
+            <robot_base_frame>base_link</robot_base_frame>  <!--KHUNG CƠ SỞ -->
+
+            <publish_odom>true</publish_odom>
+            <publish_odom_tf>true</publish_odom_tf>
+            <publish_wheel_tf>true</publish_wheel_tf>
+
+        </plugin>
+    </gazebo>
+
+
+</robot>

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+    <!-- Day la file quan tinh -->
+
+    <!-- Quan tinh hinh tru -->
+    <xacro:macro name="inertial_sphere" params="mass radius *origin">
+        <inertial>
+            <xacro:insert_block name="origin"/>
+            <mass value="${mass}" />
+            <inertia ixx="${(2/5) * float(mass) * (float(radius)*float(radius))}" ixy="0.0" ixz="0.0"
+                     iyy="${(2/5) * float(mass) * (float(radius)*float(radius))}" iyz="0.0"
+                     izz="${(2/5) * float(mass) * (float(radius)*float(radius))}" />
+        </inertial>
+    </xacro:macro>  
+
+
+
+
+    <!-- Quan tinh hinh hop -->
+    <xacro:macro name="inertial_box" params="mass x y z *origin">
+        <inertial>
+            <xacro:insert_block name="origin"/>
+            <mass value="${mass}" />
+            <inertia ixx="${(1/12) * float(mass) * (float(y)*float(y) + float(z)*float(z))}" ixy="0.0" ixz="0.0"
+                     iyy="${(1/12) * float(mass) * (float(x)*float(x) + float(z)*float(z))}" iyz="0.0"
+                     izz="${(1/12) * float(mass) * (float(x)*float(x) + float(y)*float(y))}" />
+        </inertial>
+    </xacro:macro>
+
+
+
+    <!-- Quan tinh hinh tru -->
+    <xacro:macro name="inertial_cylinder" params="mass length radius *origin">
+        <inertial>
+            <xacro:insert_block name="origin"/>
+            <mass value="${mass}" />
+            <inertia ixx="${(1/12) * float(mass) * (3*float(radius)*float(radius) + float(length)*float(length))}" ixy="0.0" ixz="0.0"
+                     iyy="${(1/12) * float(mass) * (3*float(radius)*float(radius) + float(length)*float(length))}" iyz="0.0"
+                     izz="${(1/2) * float(mass) * (float(radius)*float(radius))}" />
+        </inertial>
+    </xacro:macro>
+
+</robot>

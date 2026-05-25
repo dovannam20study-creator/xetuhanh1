@@ -1,0 +1,191 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robot">
+
+
+    <xacro:include filename="inertial_macros.xacro"/>
+
+
+    <xacro:property name="dai" value="0.25"/>
+    <xacro:property name="rong" value="0.23"/>
+    <xacro:property name="cao" value="0.15"/>
+    <xacro:property name="KhoiLuongKhung" value="1.0"/>
+
+    <xacro:property name="DoRongBanhxe" value="0.027"/>
+    <xacro:property name="BanKinBanhxe" value="0.0325"/>
+    <xacro:property name="KL_Banhxe" value="0.1"/>
+
+    <xacro:property name="BK_BDH" value="0.015"/>
+    <xacro:property name="KL_BDH" value="0.1"/>
+
+    
+
+
+
+
+    <material name="white"><color rgba="1 1 1 1"/></material>
+    <material name="orange"><color rgba="1 0.3 0.1 1"/></material>
+    <material name="blue"><color rgba="0.2 0.2 1 1"/></material>
+    <material name="black"><color rgba="0 0 0 1"/></material>
+    <material name="red"><color rgba="1 0 0 1"/></material>
+
+
+
+
+    <link name="base_link"></link>
+    
+
+
+
+
+    <joint name="khung_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="khung"/>
+        <origin xyz="${-dai/2} 0 0"/>
+    </joint>
+
+    <link name="khung">
+        <visual>
+            <origin xyz="${dai/2} 0 ${cao/2}"/>
+            <geometry>
+                <box size="${dai} ${rong} ${cao}"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <origin xyz="${dai/2} 0 ${cao/2}"/>
+            <geometry>
+                <box size="${dai} ${rong} ${cao}"/>
+            </geometry>
+        </collision>
+            <xacro:inertial_box mass="${KhoiLuongKhung}" x="${dai}" y="${rong}" z="${cao}">
+            <origin xyz="${dai/2} 0 ${cao/2}" rpy="0 0 0"/>
+        </xacro:inertial_box>
+        
+    </link>
+    <gazebo reference="khung">
+        <material>Gazebo/White</material>
+    </gazebo>
+
+
+
+
+    <joint name="Banh_trai_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="Banh_trai"/>
+        <origin xyz="0 ${rong/2} 0" rpy="-${pi/2} 0 0" />
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="Banh_trai">
+        <visual>
+            <geometry>
+                <cylinder radius="${BanKinBanhxe}" length="${DoRongBanhxe}"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="${BanKinBanhxe}" length="${DoRongBanhxe}"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="${KL_Banhxe}" length="${DoRongBanhxe}" radius="${BanKinBanhxe}">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+    <gazebo reference="Banh_trai">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+
+    <joint name="Banh_phai_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="Banh_phai"/>
+        <origin xyz="0 -${rong/2} 0" rpy="${pi/2} 0 0" />
+        <axis xyz="0 0 -1"/>
+    </joint>
+
+    <link name="Banh_phai">
+        <visual>
+            <geometry>
+                <cylinder radius="${BanKinBanhxe}" length="${DoRongBanhxe}"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="${BanKinBanhxe}" length="${DoRongBanhxe}"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="${KL_Banhxe}" length="${DoRongBanhxe}" radius="${BanKinBanhxe}">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+    <gazebo reference="Banh_phai">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+
+
+
+
+    <joint name="BDH_trc_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="BDH_trc"/>
+        <origin xyz="0.1 0 -0.0175"/>
+    </joint>
+
+    <link name="BDH_trc">
+        <visual>
+            <geometry>
+                <sphere radius="${BK_BDH}"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+        <collision>
+            <geometry>
+                <sphere radius="${BK_BDH}"/>
+            </geometry>
+            <material name="black"/>
+        </collision>
+        <xacro:inertial_sphere mass="${KL_BDH}" radius="${BK_BDH}">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_sphere>
+    </link>
+    <gazebo reference="BDH_trc">
+        <material>Gazebo/Black</material>
+        <mu1 value="0.001"/>
+        <mu2 value="0.001"/>
+    </gazebo>
+   
+
+    <joint name="BDH_sau_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="BDH_sau"/>
+        <origin xyz="-0.1 0 -0.0175"/>
+    </joint>
+
+    <link name="BDH_sau">
+        <visual>
+            <geometry>
+                <sphere radius="${BK_BDH}"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+        <collision>
+            <geometry>
+                <sphere radius="${BK_BDH}"/>
+            </geometry>
+            <material name="black"/>
+        </collision>
+        <xacro:inertial_sphere mass="${KL_BDH}" radius="${BK_BDH}">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_sphere>
+    </link>
+    <gazebo reference="BDH_sau">
+        <material>Gazebo/Black</material>
+        <mu1 value="0.001"/>
+        <mu2 value="0.001"/>
+    </gazebo>
+
+
+</robot>
