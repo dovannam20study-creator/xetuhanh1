@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
 
-    <!-- Day la file quan tinh -->
+    <!-- Đây là file quản tính -->
 
-    <!-- Quan tinh hinh tru -->
-    <xacro:macro name="inertial_sphere" params="mass radius *origin">
+    <!-- Quán tính hình cầu -->
+    <xacro:macro name="quan_tinh_hinh_cau" params="mass radius *origin">
         <inertial>
             <xacro:insert_block name="origin"/>
             <mass value="${mass}" />
@@ -17,8 +17,8 @@
 
 
 
-    <!-- Quan tinh hinh hop -->
-    <xacro:macro name="inertial_box" params="mass x y z *origin">
+    <!-- Quán tính hình hộp -->
+    <xacro:macro name="quan_tinh_hinh_hop" params="mass x y z *origin">
         <inertial>
             <xacro:insert_block name="origin"/>
             <mass value="${mass}" />
@@ -30,8 +30,8 @@
 
 
 
-    <!-- Quan tinh hinh tru -->
-    <xacro:macro name="inertial_cylinder" params="mass length radius *origin">
+    <!-- Quán tính hình trụ -->
+    <xacro:macro name="quan_tinh_hinh_tru" params="mass length radius *origin">
         <inertial>
             <xacro:insert_block name="origin"/>
             <mass value="${mass}" />

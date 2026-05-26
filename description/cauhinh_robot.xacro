@@ -2,7 +2,7 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robot">
 
 
-    <xacro:include filename="inertial_macros.xacro"/>
+    <xacro:include filename="quan_tinh_macros.xacro"/>
 
 
     <xacro:property name="dai" value="0.25"/>
@@ -10,9 +10,9 @@
     <xacro:property name="cao" value="0.15"/>
     <xacro:property name="KhoiLuongKhung" value="1.0"/>
 
-    <xacro:property name="DoRongBanhxe" value="0.027"/>
-    <xacro:property name="BanKinBanhxe" value="0.0325"/>
-    <xacro:property name="KL_Banhxe" value="0.1"/>
+    <xacro:property name="do_rong_banh_xe" value="0.027"/>
+    <xacro:property name="ban_kinh_banh_xe" value="0.0325"/>
+    <xacro:property name="khoi_luong_banh_xe" value="0.1"/>
 
     <xacro:property name="BK_BDH" value="0.015"/>
     <xacro:property name="KL_BDH" value="0.1"/>
@@ -65,9 +65,9 @@
                 <box size="${dai} ${rong} ${cao}"/>
             </geometry>
         </collision>
-            <xacro:inertial_box mass="${KhoiLuongKhung}" x="${dai}" y="${rong}" z="${cao}">
+            <xacro:quan_tinh_hinh_hop mass="${KhoiLuongKhung}" x="${dai}" y="${rong}" z="${cao}">
             <origin xyz="${dai/2} 0 ${cao/2}" rpy="0 0 0"/>
-        </xacro:inertial_box>
+        </xacro:quan_tinh_hinh_hop>
         
     </link>
     <gazebo reference="khung">
@@ -87,18 +87,18 @@
     <link name="Banh_trai">
         <visual>
             <geometry>
-                <cylinder radius="${BanKinBanhxe}" length="${DoRongBanhxe}"/>
+                <cylinder radius="${ban_kinh_banh_xe}" length="${do_rong_banh_xe}"/>
             </geometry>
             <material name="blue"/>
         </visual>
         <collision>
             <geometry>
-                <cylinder radius="${BanKinBanhxe}" length="${DoRongBanhxe}"/>
+                <cylinder radius="${ban_kinh_banh_xe}" length="${do_rong_banh_xe}"/>
             </geometry>
         </collision>
-        <xacro:inertial_cylinder mass="${KL_Banhxe}" length="${DoRongBanhxe}" radius="${BanKinBanhxe}">
+        <xacro:quan_tinh_hinh_tru mass="${khoi_luong_banh_xe}" length="${do_rong_banh_xe}" radius="${ban_kinh_banh_xe}">
             <origin xyz="0 0 0" rpy="0 0 0"/>
-        </xacro:inertial_cylinder>
+        </xacro:quan_tinh_hinh_tru>
     </link>
     <gazebo reference="Banh_trai">
         <material>Gazebo/Blue</material>
@@ -115,18 +115,18 @@
     <link name="Banh_phai">
         <visual>
             <geometry>
-                <cylinder radius="${BanKinBanhxe}" length="${DoRongBanhxe}"/>
+                <cylinder radius="${ban_kinh_banh_xe}" length="${do_rong_banh_xe}"/>
             </geometry>
             <material name="blue"/>
         </visual>
         <collision>
             <geometry>
-                <cylinder radius="${BanKinBanhxe}" length="${DoRongBanhxe}"/>
+                <cylinder radius="${ban_kinh_banh_xe}" length="${do_rong_banh_xe}"/>
             </geometry>
         </collision>
-        <xacro:inertial_cylinder mass="${KL_Banhxe}" length="${DoRongBanhxe}" radius="${BanKinBanhxe}">
+        <xacro:quan_tinh_hinh_tru mass="${khoi_luong_banh_xe}" length="${do_rong_banh_xe}" radius="${ban_kinh_banh_xe}">
             <origin xyz="0 0 0" rpy="0 0 0"/>
-        </xacro:inertial_cylinder>
+        </xacro:quan_tinh_hinh_tru>
     </link>
     <gazebo reference="Banh_phai">
         <material>Gazebo/Blue</material>
@@ -155,9 +155,9 @@
             </geometry>
             <material name="black"/>
         </collision>
-        <xacro:inertial_sphere mass="${KL_BDH}" radius="${BK_BDH}">
+        <xacro:quan_tinh_hinh_cau mass="${KL_BDH}" radius="${BK_BDH}">
             <origin xyz="0 0 0" rpy="0 0 0"/>
-        </xacro:inertial_sphere>
+        </xacro:quan_tinh_hinh_cau>
     </link>
     <gazebo reference="BDH_trc">
         <material>Gazebo/Black</material>
@@ -185,9 +185,9 @@
             </geometry>
             <material name="black"/>
         </collision>
-        <xacro:inertial_sphere mass="${KL_BDH}" radius="${BK_BDH}">
+        <xacro:quan_tinh_hinh_cau mass="${KL_BDH}" radius="${BK_BDH}">
             <origin xyz="0 0 0" rpy="0 0 0"/>
-        </xacro:inertial_sphere>
+        </xacro:quan_tinh_hinh_cau>
     </link>
     <gazebo reference="BDH_sau">
         <material>Gazebo/Black</material>

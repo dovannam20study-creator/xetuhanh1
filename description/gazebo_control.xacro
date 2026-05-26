@@ -10,11 +10,11 @@
 
             <!-- KHoảng cách 2 bánh xe -->
             <wheel_separation>${rong}</wheel_separation> 
-            <!-- Duong kinh banh xe -->
-            <wheel_diameter>${BanKinBanhxe * 2}</wheel_diameter>
+            <!-- Đường kính bánh xe -->
+            <wheel_diameter>${ban_kinh_banh_xe * 2}</wheel_diameter>
 
 
-            <!-- Limits  Giới hạn gia tốc và momen xoắn-->
+            <!-- Giới hạn gia tốc và momen xoắn -->
             <max_wheel_torque>200</max_wheel_torque>
             <max_wheel_acceleration>10.0</max_wheel_acceleration>
 
